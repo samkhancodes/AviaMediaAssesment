@@ -1,36 +1,31 @@
-// Import necessary dependencies
 import { createPinia, defineStore } from 'pinia';
 
-// Create a Pinia store
 const pinia = createPinia();
 
-// Define your store
 export const useMyStore = defineStore('MyStore', {
-  // State (data)
   state: () => ({
-    data: null, // Variable to store data
+    data: null,
   }),
 
-  // Actions
   actions: {
-    // Action to fetch data from an API
-    async fetchData() {
+    async fetchDataset() {
+      const apiUrl = import.meta.env.VITE_API_BASE_URL; 
       try {
-        // Replace this with your actual API endpoint
-        const response = await fetch('https://api.example.com/data');
-        
+        const response = await fetch(
+          `${apiUrl}`
+        );
+
         if (!response.ok) {
-          throw new Error('Failed to fetch data');
+          throw new Error('Failed to fetch dataset');
         }
 
-        // Parse the response as JSON and update the data variable
-        this.data = await response.json();
+        this.dataset = await response.json();
+        console.log(this.dataset);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching dataset:', error);
       }
     },
   },
 });
 
-// Export the store
 export default pinia;
