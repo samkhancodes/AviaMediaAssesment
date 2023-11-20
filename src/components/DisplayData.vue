@@ -18,6 +18,7 @@ onMounted(async () => {
   await myStore.fetchDataset();
 
   const data = myStore.getDataset
+  console.log(data)
 
   // Chart dimensions and margins
   const width = 928;
@@ -30,14 +31,14 @@ onMounted(async () => {
   // X scale
   const x = d3
     .scaleBand()
-    .domain(d3.groupSort(data, ([d]) => -d.frequency, (d) => d.letter))
+    .domain(d3.groupSort(data, ([d]) => -d.ytd_attendance_avg_, (d) => d.ytd_enrollment_avg_))
     .range([marginLeft, width - marginRight])
     .padding(0.1);
 
   // Y scale
   const y = d3
     .scaleLinear()
-    .domain([0, d3.max(data, (d) => d.frequency)])
+    .domain([0, d3.max(data, (d) => d.ytd_attendance_avg_)])
     .range([height - marginBottom, marginTop]);
 
   // Create SVG container
@@ -57,9 +58,9 @@ onMounted(async () => {
     .selectAll()
     .data(data)
     .join('rect')
-    .attr('x', (d) => x(d.letter))
-    .attr('y', (d) => y(d.frequency))
-    .attr('height', (d) => y(0) - y(d.frequency))
+    .attr('x', (d) => x(d.ytd_enrollment_avg_))
+    .attr('y', (d) => y(d.ytd_attendance_avg_))
+    .attr('height', (d) => y(0) - y(d.ytd_attendance_avg_))
     .attr('width', x.bandwidth());
 
   // Add x-axis and label
