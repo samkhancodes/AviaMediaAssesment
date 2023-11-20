@@ -9,11 +9,10 @@ export const useMyStore = defineStore('MyStore', {
 
   actions: {
     async fetchDataset() {
-      const apiKey = import.meta.env.VITE_KAGGLE_API; 
-      const datasetSlug = import.meta.env.VITE_KAGGLE_USERNAME;
+      const apiUrl = import.meta.env.VITE_API_BASE_URL; 
       try {
         const response = await fetch(
-          `https://www.kaggle.com/api/v1/datasets/download/${datasetSlug}?key=${apiKey}`
+          `${apiUrl}`
         );
 
         if (!response.ok) {
