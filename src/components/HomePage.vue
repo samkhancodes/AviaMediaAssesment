@@ -1,7 +1,7 @@
 <template>
     <div>
-       <h1> home </h1>
-        <router-link to="/data">Show Data</router-link>
+       <h1> Home </h1>
+        <router-link to="/data">Show Bar Chart</router-link>
     </div>
 </template>
 

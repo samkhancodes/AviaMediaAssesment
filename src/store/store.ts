@@ -6,7 +6,11 @@ export const useMyStore = defineStore('MyStore', {
   state: () => ({
     data: null,
   }),
-
+  getters: {
+    getDataset() {
+      return this.data;
+    },
+  },
   actions: {
     async fetchDataset() {
       const apiUrl = import.meta.env.VITE_API_BASE_URL; 
@@ -19,8 +23,7 @@ export const useMyStore = defineStore('MyStore', {
           throw new Error('Failed to fetch dataset');
         }
 
-        this.dataset = await response.json();
-        console.log(this.dataset);
+        this.data = await response.json();
       } catch (error) {
         console.error('Error fetching dataset:', error);
       }
