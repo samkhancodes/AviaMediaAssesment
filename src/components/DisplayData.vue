@@ -2,7 +2,7 @@
   <div>
     <button @click="toggleChart">{{ showChart ? barChartBtn : lineChartBtn }}</button>
     <div v-if="showChart">
-    <lineChart/>
+        <lineChart :data="barchartData"/>    
     </div>
     <div v-else>
         <barChart :data="barchartData"/>
@@ -14,7 +14,6 @@
 <script setup>
 import barChart from './charts/barChart.vue'
 import lineChart from './charts/lineChart.vue'
-import {  ref } from 'vue';
 import {ref,onMounted} from 'vue'
 import { useMyStore } from '../store/store';
 const barchartData = ref(null)
