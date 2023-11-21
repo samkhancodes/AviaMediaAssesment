@@ -1,7 +1,7 @@
 <template>
   <div>
     <barChart :data="barchartData"/>
-    <lineChart/>
+    <lineChart :data="barchartData"/>
     <router-link to="/">Back</router-link>
   </div>
 </template>
