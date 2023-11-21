@@ -1,10 +1,10 @@
 <template>
   <div>
     <button @click="toggleChart">{{ showChart ? barChartBtn : lineChartBtn }}</button>
-    <div v-if="showChart">
+    <div v-show="showChart" >
         <lineChart :data="barchartData"/>    
     </div>
-    <div v-else>
+    <div v-show="!showChart">
         <barChart :data="barchartData"/>
     </div>
     <router-link to="/">Back</router-link>
